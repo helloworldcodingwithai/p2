@@ -20,6 +20,27 @@
             border-top: 2px solid green;
             padding-top: 20px;
         }
+        textarea, button {
+            display: block;
+            margin: 10px auto;
+            width: 80%;
+            max-width: 600px;
+            background-color: #222;
+            color: green;
+            border: 1px solid green;
+            padding: 10px;
+        }
+        #posts {
+            margin-top: 20px;
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .post {
+            border-bottom: 1px solid green;
+            padding: 10px 0;
+        }
     </style>
 </head>
 <body>
@@ -28,7 +49,21 @@
     
     <div class="blog">
         <h2>Blog</h2>
-        <p>Welcome to the blog section. Stay tuned for updates!</p>
+        <textarea id="newPost" placeholder="Write something..."></textarea>
+        <button onclick="addPost()">Post</button>
+        <div id="posts"></div>
     </div>
+    
+    <script>
+        function addPost() {
+            let postText = document.getElementById("newPost").value;
+            if (postText.trim() === "") return;
+            let postDiv = document.createElement("div");
+            postDiv.className = "post";
+            postDiv.textContent = postText;
+            document.getElementById("posts").prepend(postDiv);
+            document.getElementById("newPost").value = "";
+        }
+    </script>
 </body>
 </html>
